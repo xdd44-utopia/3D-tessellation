@@ -2,7 +2,7 @@ import processing.opengl.*;
 import igeo.*;
 
 size( 480, 360, IG.GL );
-
+/*
 IVec[] controlPoints1 = new IVec[4];
 controlPoints1[0] = new IVec(0, 0, 0);
 controlPoints1[1] = new IVec(20, 30, 30);
@@ -20,7 +20,7 @@ controlPoints2[3] = new IVec4(60, 0, 0, 1);
 
 int deg2 = 3;
 new ICurve(controlPoints2, deg2).clr(1.,0,0);
-
+*/
 IVec[][] controlPoints3 = new IVec[][]{
   new IVec[]{ new IVec(-70,0,0), new IVec(-70,20,30), new IVec(-70,40,0) },
   new IVec[]{ new IVec(-50,30,30), new IVec(-50,50,60), new IVec(-50,70,30) },
@@ -31,6 +31,12 @@ IVec[][] controlPoints3 = new IVec[][]{
 int udeg3 = 3, vdeg3 = 2;
 new ISurface(controlPoints3, udeg3, vdeg3).clr(0);
 
+IVec[][] controlPoints = new IVec[][]{
+  new IVec[]{new IVec(0,0,0), new IVec(0,100,0)},
+  new IVec[]{new IVec(100,0,0), new IVec(100,100,0)}
+};
+new ISurface(controlPoints, 1, 1).clr(0);
+/*
 IVec4[][] controlPoints4 = new IVec4[][]{
   new IVec4[]{ new IVec4(-70,0,0,1), new IVec4(-70,20,30,.5), new IVec4(-70,40,0,1) },
   new IVec4[]{ new IVec4(-50,30,30,.5), new IVec4(-50,50,60,.5), new IVec4(-50,70,30,.5) },
@@ -39,4 +45,4 @@ IVec4[][] controlPoints4 = new IVec4[][]{
 };
 
 int udeg4 = 3, vdeg4 = 2;
-new ISurface(controlPoints4, udeg4, vdeg4).clr(1,.5,1);
+new ISurface(controlPoints4, udeg4, vdeg4).clr(1,.5,1);*/
