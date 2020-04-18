@@ -14,7 +14,7 @@ void setup(){
 				continue;
 			}
 			Dode h = new Dode(new IVec(frameLen*i-(abs(j)%2)*frameLen/2,frameLen*j/2,0), radius);
-			h.awayXYFrom(awayFromThis);
+			h.awayFrom(awayFromThis);
 			h.display();
 		}
 		//h.rotateMiddle(PI/10*i);
