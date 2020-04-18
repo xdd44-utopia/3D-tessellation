@@ -6,4 +6,4 @@ WIREFRAME : Type w key.
 SHADE: Type s key.
 TRANSPARENT SHADE: Type t key.
 SHADE WITHOUT EDGES: Type shift + s key.
-TRANSPARENT SHADE WITHOUT EDGES: Type shift + t key.
+TRANSPARENT SHADE WITHOUT EDGES: Type shift + t key
