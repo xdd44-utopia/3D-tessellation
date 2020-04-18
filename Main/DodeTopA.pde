@@ -1,7 +1,7 @@
 class DodeTopA {
 	IVec top;
 	IVec bottom;
-	Ivec[] middle;
+	IVec[] middle;
 	IVec pos;
 	double radius;
 
