@@ -1,0 +1,4 @@
+//Rhombic dodecahedron
+class Ddh {
+	
+}
