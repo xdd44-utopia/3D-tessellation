@@ -22,7 +22,7 @@ class DodePA {
 		pos.add(support);
 		IVec sub = pos.dup().sub(p);
 		double dist = sub.len();
-		radius = radius - radius*15/sqrt((float)dist); //Radius change formula here
+		radius = radius - radius/sqrt(sqrt((float)dist)); //Radius change formula here
 
 		top.mul(radius).div(preRad);
 		bottom.mul(radius).div(preRad);
@@ -38,11 +38,11 @@ class DodePA {
 		IVec sub = pos.dup().sub(p);
 		double dist = sub.len();
 
-		pos = new IVec(pos.x(), pos.y(), pos.z() + pos.z()*50/sqrt((float)dist)); //Offset formula here
-		//IVec dir = sub.dup().div(dist);
-		//double offDist = frameLen*10/sqrt(sqrt((float)dist)); //Offset formula here
-		//dir.mul(offDist);
-		//pos.add(dir);
+		//pos = new IVec(pos.x(), pos.y(), pos.z()*500/(float)dist); //Offset formula here
+		IVec dir = sub.dup().div(dist);
+		double offDist = frameLen*10/sqrt((float)dist); //Offset formula here
+		dir.mul(offDist);
+		pos.add(dir);
 
 		sub = pos.dup();
 		pos.sub(support);

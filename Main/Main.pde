@@ -4,14 +4,13 @@ import igeo.*;
 double frameLen = 100;
 int xcount = 40;
 int ycount = xcount/2;
-int zcount = 5;
+int zcount = 3;
 double radius = frameLen/4;
 double frameRad = 10;
 
 void setup(){
-	size(1280,720,IG.GL);
-	IVec awayFromThis = new IVec(1000,1000,100);
-	awayFromThis.show();
+	size(1024,560,IG.GL);
+	IVec awayFromThis = new IVec(1000,1000,200);
 
 	Dode[][][] list = new Dode[xcount][ycount][zcount];
 
@@ -52,6 +51,7 @@ void setup(){
 			}
 		}
 	}
+	IG.save("Dode.obj");
 }
 
 IVec rotVec(IVec ori, IVec from, IVec to){

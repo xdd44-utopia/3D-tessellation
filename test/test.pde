@@ -9,36 +9,9 @@ double radius = frameLen/4;
 double frameRad = 5;
 
 void setup(){
+  size(1280,720,IG.GL);
 	new IPoint(0,0,0);
-	size(1280,720,IG.GL);
-	IVec t1 = new IVec(0,0,100);
-	t1 = rotVec(t1, new IVec(0,0,1), new IVec(1,0,0)).dup();
-	t1.show().clr(255,0,255);
-	t1 = rotVec(t1, new IVec(1,0,0), new IVec(0,1,0)).dup();
-	t1.show().clr(0,255,255);
-	Dode dd = new Dode(method1(new IVec(0,0,0)));
-	/*
-	dd.displayFrameA(new Dode[]{
-    	new Dode(method1(new IVec(frameLen/2, -frameLen/2, 0))),
-    	new Dode(method1(new IVec(-frameLen/2, -frameLen/2, 0))),
-    	new Dode(method1(new IVec(frameLen/2, 0, -frameLen/2))),
-    	new Dode(method1(new IVec(-frameLen/2, 0, -frameLen/2))),
-    	new Dode(method1(new IVec(0, frameLen/2, -frameLen/2)))
-	});*/
-	IVec newDir = new IVec(10,100,50);
-	new ICurve(0,0,0,10,100,50);
-	Dode[] involved = new Dode[]{
-    	new Dode(method1(rotVec(new IVec(frameLen/2, -frameLen/2, 0), new IVec(0,0,1), newDir))),
-    	new Dode(method1(rotVec(new IVec(-frameLen/2, -frameLen/2, 0), new IVec(0,0,1), newDir))),
-    	new Dode(method1(rotVec(new IVec(frameLen/2, 0, -frameLen/2), new IVec(0,0,1), newDir))),
-    	new Dode(method1(rotVec(new IVec(-frameLen/2, 0, -frameLen/2), new IVec(0,0,1), newDir))),
-    	new Dode(method1(rotVec(new IVec(0, frameLen/2, -frameLen/2), new IVec(0,0,1), newDir)))
-	};
-	for (int i=0;i<5;i++){
-		involved[i].rotateTo(newDir);
-	}
-	dd.rotateTo(newDir);
-	dd.displayFrameA(involved);
+	IG.save("233.obj");
 }
 
 IVec rotVec(IVec ori, IVec from, IVec to){

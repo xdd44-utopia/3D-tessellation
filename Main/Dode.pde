@@ -67,6 +67,12 @@ class Dode {
 		for (int i=0;i<8;i++){
 			frame[i].display();
 		}
+		IVec[][] controlPoints= new IVec[][]{new IVec[2], new IVec[2]};
+			controlPoints[0][0] = top.middle[0].dup().add(pos).add(top.pos);
+			controlPoints[0][1] = top.middle[1].dup().add(pos).add(top.pos);
+			controlPoints[1][0] = top.middle[3].dup().add(pos).add(top.pos);
+			controlPoints[1][1] = top.middle[2].dup().add(pos).add(top.pos);
+			new ISurface(controlPoints, 1, 1).clr(255);
 	}
 
 	void awayFrom(IVec p) {
@@ -79,7 +85,7 @@ class Dode {
 		}
 		IVec sub = pos.dup().sub(p);
 		double dist = sub.len();
-		pos = new IVec(pos.x(), pos.y(), pos.z() + pos.z()*50/sqrt((float)dist));
+		pos = new IVec(pos.x(), pos.y(), pos.z() + 5000/sqrt(sqrt((float)dist)));
 	}
 
 	void rotateTo(IVec towards) {
