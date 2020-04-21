@@ -1,48 +1,49 @@
 import processing.opengl.*;
 import igeo.*;
 
-size( 480, 360, IG.GL );
-/*
-IVec[] controlPoints1 = new IVec[4];
-controlPoints1[0] = new IVec(0, 0, 0);
-controlPoints1[1] = new IVec(20, 30, 30);
-controlPoints1[2] = new IVec(40, -30, -30);
-controlPoints1[3] = new IVec(60, 0, 0);
+double frameLen = 100;
+int xcount = 40;
+int ycount = xcount/2;
+int zcount = 8;
+double radius = frameLen/4;
+double frameRad = 5;
 
-int deg1 = 3;
-new ICurve(controlPoints1, deg1).clr(0);
+void setup(){
+	new IPoint(0,0,0);
+	size(1280,720,IG.GL);
+	IVec t1 = new IVec(0,0,100);
+	t1 = rotVec(t1, new IVec(0,0,1), new IVec(1,0,0)).dup();
+	t1.show().clr(255,0,255);
+	t1 = rotVec(t1, new IVec(1,0,0), new IVec(0,1,0)).dup();
+	t1.show().clr(0,255,255);
+	Dode dd = new Dode(method1(new IVec(0,0,0)));
+	/*
+	dd.displayFrameA(new Dode[]{
+    	new Dode(method1(new IVec(frameLen/2, -frameLen/2, 0))),
+    	new Dode(method1(new IVec(-frameLen/2, -frameLen/2, 0))),
+    	new Dode(method1(new IVec(frameLen/2, 0, -frameLen/2))),
+    	new Dode(method1(new IVec(-frameLen/2, 0, -frameLen/2))),
+    	new Dode(method1(new IVec(0, frameLen/2, -frameLen/2)))
+	});*/
+	IVec newDir = new IVec(10,100,50);
+	new ICurve(0,0,0,10,100,50);
+	Dode[] involved = new Dode[]{
+    	new Dode(method1(rotVec(new IVec(frameLen/2, -frameLen/2, 0), new IVec(0,0,1), newDir))),
+    	new Dode(method1(rotVec(new IVec(-frameLen/2, -frameLen/2, 0), new IVec(0,0,1), newDir))),
+    	new Dode(method1(rotVec(new IVec(frameLen/2, 0, -frameLen/2), new IVec(0,0,1), newDir))),
+    	new Dode(method1(rotVec(new IVec(-frameLen/2, 0, -frameLen/2), new IVec(0,0,1), newDir))),
+    	new Dode(method1(rotVec(new IVec(0, frameLen/2, -frameLen/2), new IVec(0,0,1), newDir)))
+	};
+	for (int i=0;i<5;i++){
+		involved[i].rotateTo(newDir);
+	}
+	dd.rotateTo(newDir);
+	dd.displayFrameA(involved);
+}
 
-IVec4[] controlPoints2 = new IVec4[4];
-controlPoints2[0] = new IVec4(0, 0, 0, 1);
-controlPoints2[1] = new IVec4(20, 30, 30, 0.5);
-controlPoints2[2] = new IVec4(40, -30, -30, 0.5);
-controlPoints2[3] = new IVec4(60, 0, 0, 1);
-
-int deg2 = 3;
-new ICurve(controlPoints2, deg2).clr(1.,0,0);
-*/
-IVec[][] controlPoints3 = new IVec[][]{
-  new IVec[]{ new IVec(-70,0,0), new IVec(-70,20,30), new IVec(-70,40,0) },
-  new IVec[]{ new IVec(-50,30,30), new IVec(-50,50,60), new IVec(-50,70,30) },
-  new IVec[]{ new IVec(-30,-30,-30), new IVec(-30,-10,0), new IVec(-30,10,-30) },
-  new IVec[]{ new IVec(-10,0,30), new IVec(-10,20,60), new IVec(-10,40,30) }
-};
-
-int udeg3 = 3, vdeg3 = 2;
-new ISurface(controlPoints3, udeg3, vdeg3).clr(0);
-
-IVec[][] controlPoints = new IVec[][]{
-  new IVec[]{new IVec(0,0,0), new IVec(0,100,0)},
-  new IVec[]{new IVec(100,0,0), new IVec(100,100,0)}
-};
-new ISurface(controlPoints, 1, 1).clr(0);
-/*
-IVec4[][] controlPoints4 = new IVec4[][]{
-  new IVec4[]{ new IVec4(-70,0,0,1), new IVec4(-70,20,30,.5), new IVec4(-70,40,0,1) },
-  new IVec4[]{ new IVec4(-50,30,30,.5), new IVec4(-50,50,60,.5), new IVec4(-50,70,30,.5) },
-  new IVec4[]{ new IVec4(-30,-30,-30,.5), new IVec4(-30,-10,0,.5), new IVec4(-30,10,-30,.5) },
-  new IVec4[]{ new IVec4(-10,0,30,1), new IVec4(-10,20,60,.5), new IVec4(-10,40,30,1) }
-};
-
-int udeg4 = 3, vdeg4 = 2;
-new ISurface(controlPoints4, udeg4, vdeg4).clr(1,.5,1);*/
+IVec rotVec(IVec ori, IVec from, IVec to){
+	double angle = acos((float)((from.x()*to.x()+from.y()*to.y()+from.z()*to.z())/(from.len()*to.len())));
+	IVec axis = new IVec(from.y()*to.z()-from.z()*to.y(), from.z()*to.x()-from.x()*to.z(), from.x()*to.y()-from.y()*to.x());
+	IVec newVec = ori.dup().rot(axis, angle);
+	return newVec;
+}
