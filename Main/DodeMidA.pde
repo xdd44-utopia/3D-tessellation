@@ -1,13 +1,18 @@
 class DodeMidA extends DodePA{
 
-	DodeMidA (IVec p, double r, int op) {
+	DodeMidA (IVec p, IVec dir, double r, int op) {
 		super(p, r);
-		op = op * 2 - 1;
+		op = (op-1)*2-1;
 		middle = new IVec[4];
-		middle[0] = new IVec(sqrt(6)*radius/2, -sqrt(6)*radius/2, op*sqrt(6)*radius/2);
-		middle[1] = new IVec(sqrt(6)*radius/2, sqrt(6)*radius/2, -op*sqrt(6)*radius/2);
-		middle[2] = new IVec(-sqrt(6)*radius/2, sqrt(6)*radius/2, op*sqrt(6)*radius/2);
-		middle[3] = new IVec(-sqrt(6)*radius/2, -sqrt(6)*radius/2, -op*sqrt(6)*radius/2);
+		middle[0] = new IVec(sqrt(3)*radius, 0, op*sqrt(6)*radius/2);
+		middle[1] = new IVec(0, sqrt(3)*radius, -op*sqrt(6)*radius/2);
+		middle[2] = new IVec(-sqrt(3)*radius, 0, op*sqrt(6)*radius/2);
+		middle[3] = new IVec(0, -sqrt(3)*radius, -op*sqrt(6)*radius/2);
+		/*
+		for (int i=0;i<4;i++){
+			middle[i]=rotVec(middle[i],new IVec(0,0,1), dir);
+		}
+		*/
 	}
 
 	void display(IVec support) {
